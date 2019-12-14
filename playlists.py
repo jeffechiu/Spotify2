@@ -26,6 +26,37 @@ def get_tracks(sp, playlist):
 		#print(song['track']['name'])
 	return tracks
 
+def get_sets_of_5(sp, tracks):
+	ans = []
+	loops = len(tracks)-4
+	trlen = len(tracks)
+	print(trlen)
+	for i1 in range(0, loops):
+		for i2 in range(i1+1, min(i1+1+loops, trlen)):
+			for i3 in range(i2+1, min(i2+1+loops, trlen)):
+				for i4 in range(i3+1, min(i3+1+loops, trlen)):
+					for i5 in range(i4+1, min(i4+1+loops, trlen)):
+						trk = [tracks[i1], tracks[i2], tracks[i3], tracks[i4], tracks[i5]]
+						status = "add"
+						#print(len(trk))
+						for i in range(len(trk)):
+							#print(i)
+							for j in range(len(trk)):
+								if i != j:
+									if trk[i] == trk[j]:
+										status = "no"
+									#if j > i and (trk[i]['id'] > trk[j]['id']):
+									#	print("runs", i, j)
+										#print(type(trk[i]['id']))
+									#	print(trk[i]['id'] > trk[j]['id'])
+									#	status = "no"
+						if status == "add":
+							ans += [trk]
+						#print(ans)
+	return ans
+
+
+
 def audio_id(sp, tracks):
 	ids = []
 	for track in tracks:
@@ -63,6 +94,13 @@ if token:
 	#print(p)
 	#print(type(p))
 	trks = get_tracks(sp, p)
+	#print(trks)
+	#print(len(trks))
+	#print(type(trks))
+	ans = get_sets_of_5(sp, trks)
+	#ans = get_sets_of_5(sp, [0, 1, 2, 3, 4, 5, 6])
+	#print(len(ans))
+	print(len(ans))
 	ids = audio_id(sp, trks)
 	features = audio_analysis(sp, ids)
 	#print(ids)
@@ -76,9 +114,9 @@ if token:
 	#print(features)
 	#print(len(features))
 	#print(type(features))
-	recs = get_recs(sp, ids, recats)
-	for track in recs['tracks']:
-		print(track['name'])
+	#recs = get_recs(sp, ids, recats)
+	#for track in recs['tracks']:
+		#print(track['name'])
 	#print(ids)
 else:
 	print("can't get token for", username)
