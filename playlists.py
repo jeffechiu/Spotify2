@@ -26,13 +26,21 @@ def get_tracks(sp, playlist):
 		#print(song['track']['name'])
 	return tracks
 
-def audio_analysis(sp, tracks):
+def audio_id(sp, tracks):
 	ids = []
 	for track in tracks:
-		ids += [track['id']]
+		ids+= [track['id']]
+	return ids
+
+def audio_analysis(sp, ids):
 	features = sp.audio_features(ids)
 	return features
 
+def get_acoustic(sp, features):
+	acous = []
+	for track in features:
+		acous += [track['key']]
+	return acous
 
 if token:
 	sp=spotipy.Spotify(auth=token)
@@ -40,9 +48,14 @@ if token:
 	#print(p)
 	#print(type(p))
 	trks = get_tracks(sp, p)
-	features = audio_analysis(sp, trks)
-	print(features)
-	print(len(features))
+	ids = audio_id(sp, trks)
+	features = audio_analysis(sp, ids)
+	#print(ids)
+	acous = get_acoustic(sp, features)
+	print(acous)
+	#print(features)
+	#print(len(features))
+	#print(type(features))
 else:
 	print("can't get token for", username)
 

@@ -1,9 +1,11 @@
 Client ID d3a608860b4f4442ad2b0aebba6afeaa
 Client Secret 2daa692e01234f9ca180f4dccef200f6
 GET https://accounts.spotify.com/authorize
-redirect-uri http%3A%2F%2Flocalhost%3A8000%2F
+redirect-uri https%3A%2F%2Fwww.spotify.com%2Fus%2F
 
 https://accounts.spotify.com/authorize?client_id=d3a608860b4f4442ad2b0aebba6afeaa&scope=playlist-read-private&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A8888%2Fcallback
+
+https://accounts.spotify.com/authorize?client_id=d3a608860b4f4442ad2b0aebba6afeaa&response_type=code&redirect_uri=https%3A%2F%2Fwww.spotify.com%2Fus%2F
 
 client ID:client secret
 d3a608860b4f4442ad2b0aebba6afeaa:2daa692e01234f9ca180f4dccef200f6
@@ -19,3 +21,7 @@ curl -H "Authorization: Basic ZDNhNjA4ODYwYjRmNDQ0MmFkMmIwYWViYmE2YWZlYWE6MmRhYT
 {
 	"access_token":"BQDBAhHXGn32rsfizkaNpf7OP1uhDElWlFf3QQb0hGUvDvNXqnPhho-Cs-HGU70ogPPvBftNllPRg5uR-9WqdWzwrnm-ShAvvgiR1iy2wpJxmHJOrKdsXDas2zLVfKvG_psX850GSzMMgGTrFp0Pth--VirzvqU","token_type":"Bearer","expires_in":3600,"refresh_token":"AQA2_LixLGFgUc53PaUXK18OBCg5Eq4pGowoGVS8ija82-lEqB7TFDdXCCvIdtDBl0TiA9PNg6hiVpqfCWZkERXW5I17J_HHLi6Mm5-S2WbfcoeqACVAF2REkhbX9mHo5Cs","scope":"playlist-read-private"
 }
+
+AQCpZtqBHsrqkM_4cow3dJLpILVLjkyZ9IRYKp5rHkI_V-pTDkt7NzSJWaaOEm5lLLAi9sMNlA_V1-bkhXlA1WWXTa5si2oL3lKnOn-A7WBw3dljN7SBojhpQwIv7J6jC2XCWrh-_wUZ5ZQ6RqxTXYvLy-OCLM5fZq1pUbvgfuxpp58OAFTPfmt6aFYVAlcf2g
+
+curl -H "Authorization: Basic ZDNhNjA4ODYwYjRmNDQ0MmFkMmIwYWViYmE2YWZlYWE6MmRhYTY5MmUwMTIzNGY5Y2ExODBmNGRjY2VmMjAwZjY=" -d grant_type=authorization_code -d code=AQCpZtqBHsrqkM_4cow3dJLpILVLjkyZ9IRYKp5rHkI_V-pTDkt7NzSJWaaOEm5lLLAi9sMNlA_V1-bkhXlA1WWXTa5si2oL3lKnOn-A7WBw3dljN7SBojhpQwIv7J6jC2XCWrh-_wUZ5ZQ6RqxTXYvLy-OCLM5fZq1pUbvgfuxpp58OAFTPfmt6aFYVAlcf2g -d redirect_uri=https%3A%2F%2Fwww.spotify.com%2Fus%2F https://accounts.spotify.com/api/token
