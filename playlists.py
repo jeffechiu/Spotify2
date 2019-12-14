@@ -36,11 +36,26 @@ def audio_analysis(sp, ids):
 	features = sp.audio_features(ids)
 	return features
 
-def get_acoustic(sp, features):
-	acous = []
+def get_attributes(sp, features, attribute):
+	attributes = []
 	for track in features:
-		acous += [track['key']]
-	return acous
+		attributes += [track[attribute]]
+	a = min(attributes)
+	b = max(attributes)
+	c = sum(attributes)/len(attributes)
+	return a, b, c
+
+def get_popularity(sp, tracks):
+	popul = []
+	for track in tracks:
+		popul += [track['popularity']]
+	a = min(popul)
+	b = max(popul)
+	c = sum(popul)/len(popul)
+	return a, b, c
+
+def get_recs(sp, ids, recats):
+	return sp.recommendations(seed_tracks=ids, country="US", limit=10, min_acousticness=recats[0][0], max_acousticness=recats[0][1], target_acousticness=recats[0][2], min_danceability=recats[1][0], max_danceability=recats[1][1], target_danceability=recats[1][2], min_duration_ms=recats[2][0], max_duration_ms=recats[2][1], target_duration_ms=round(recats[2][2]), min_energy=recats[3][0], max_energy=recats[3][1], target_energy=recats[3][2], min_instrumentalness=recats[4][0], max_instrumentalness=recats[4][1], target_instrumentalness=recats[4][2], min_key=recats[5][0], max_key=recats[5][1], target_key=round(recats[5][2]), min_liveness=recats[6][0], max_liveness=recats[6][1], target_liveness=recats[6][2], min_loudness=recats[7][0], max_loudness=recats[7][1], target_loudness=recats[7][2], min_mode=recats[8][0], max_mode=recats[8][1], target_mode=round(recats[8][2]), min_speechiness=recats[9][0], max_speechiness=recats[9][1], target_speechiness=recats[9][2], min_tempo=recats[10][0], max_tempo=recats[10][1], target_tempo=recats[10][2], min_time_signature=recats[11][0], max_time_signature=recats[11][1], target_time_signature=round(recats[11][2]), min_valence=recats[12][0], max_valence=recats[12][1], target_valence=recats[12][2], min_popularity=recats[13][0], max_popularity=recats[13][1], target_popularity=round(recats[13][2]))
 
 if token:
 	sp=spotipy.Spotify(auth=token)
@@ -51,11 +66,20 @@ if token:
 	ids = audio_id(sp, trks)
 	features = audio_analysis(sp, ids)
 	#print(ids)
-	acous = get_acoustic(sp, features)
-	print(acous)
+	attributes = ["acousticness", "danceability", "duration_ms", "energy", "instrumentalness", "key", "liveness", "loudness", "mode", "speechiness", "tempo", "time_signature", "valence"]
+	lenat = len(attributes)
+	recats = []
+	for i in range(lenat):
+		recats += [get_attributes(sp, features, attributes[i])]
+	recats += [get_popularity(sp, trks)] 
+	#print(recats)
 	#print(features)
 	#print(len(features))
 	#print(type(features))
+	recs = get_recs(sp, ids, recats)
+	for track in recs['tracks']:
+		print(track['name'])
+	#print(ids)
 else:
 	print("can't get token for", username)
 
