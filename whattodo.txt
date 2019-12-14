@@ -1,3 +1,29 @@
-1. list out songs from playlist and add to array
-2. run them as recommendation seed values
-3. loop through all values, all generating different recommendations
+We are now running everything with the spotipy module in Python to connect with the Spotify API playlist, as javascript was too confusing.
+
+First, we are going to loop over an user's playlist and find a specific one (in this case, the 318 Playlist under my account).
+Once a playlist is selected, we will list tracks and put them all into a list. Using this list, we will get the following attributes for each song:
+
+- acousticness
+- danceability
+- duration
+- energy
+- instrumentalness
+- key
+- liveness
+- loudness
+- mode
+- popularity
+- speechiness
+- tempo
+- time_signature
+- valence
+
+We will average these values, then using the averaged values along with seed values from the songs, we will generate a list of 10 recommended songs.
+We will then continue to play around with such values and find a target that at least partially matches what the Spotify recommended songs are.
+
+For you to do:
+
+The code for above is nearly all done, I can get it done in the next two hours. Can you look into a way to display this data on a webpage? Look up
+python API to web interface calls or python API to flask, or anything that can do so.
+
+I'd envision a tool that can give out song analytics and thus, generate 10 recommended songs on a webpage.
