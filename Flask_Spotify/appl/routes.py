@@ -1,6 +1,7 @@
 from flask import Flask, render_template, url_for, flash, redirect
 from appl import app
 from appl.models import Playlist, Track
+from appl.models import addRecsToDatabase
 
 from appl import playlists as p
 
@@ -24,4 +25,13 @@ def rec(playlist_id):
 	recs = p.get_recs_all(sp, allPoss)
 	disp = p.display(recs)
 	corres = p.correspond(sp, disp)
+	addRecsToDatabase(sp, corres)
 	return render_template('rec.html', corres=corres)
+
+@app.route('/song/<track_id>')
+def vtrack(track_id):
+	#track = Track.query.get_or_404(track_id)
+	td = p.track_details(sp, track_id)
+	artists = p.get_artists(sp, td)
+	features = sp.audio_features(track_id)
+	return render_template('vsong.html', tid = track_id, td=td, artists=artists, features=features)

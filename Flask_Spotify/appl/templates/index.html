@@ -1,12 +1,25 @@
 {% extends "layout.html" %}
 {% block content %}
-	<ul>
+	<div class="row">
 	{% for playlist in playlists%}
-	<li>
-		<a href={{ playlist.href }}>{{ playlist.name }}</a>
-		<a href={{ url_for('view', playlist_id=playlist.id )}}>Select</a>
-
-	</li>
+    <div class="col s4 m8">
+      <div class="card horizontal">
+        <div class="card-image">
+          <img src={{ playlist.images }}>
+          <span class="card-title">{{playlist.name}}</span>
+        </div>
+        <div class="card-stacked">
+        	<div class="card-action">
+          		<a href={{playlist.href}}>View Playlist on Spotify</a>
+          		<br />
+          		<a href={{ url_for('view', playlist_id=playlist.id)}}>Select</a>
+       		</div>
+    	</div>
+      </div>
+    </div>
+	
 	{% endfor %}
-	</ul>
+	</div>
+
+	
 {% endblock content %}

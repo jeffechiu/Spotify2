@@ -4,7 +4,8 @@
 	<ol>
 	{% for track in corres %}
 		<li>
-			<p>{{ track.name }} {{track.artists}}</p>
+			<a href={{ url_for('vtrack', track_id=track.id) }}>{{ track.name }}</a>
+			<p>{{track.artists}}</p>
 		</li>
 	{% endfor %}
 	</ol>
