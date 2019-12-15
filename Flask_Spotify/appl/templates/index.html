@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block content %}
+	<ul>
+	{% for playlist in playlists%}
+	<li>
+		<a href={{ playlist.href }}>{{ playlist.name }}</a>
+		<a href={{ url_for('view', playlist_id=playlist.id )}}>Select</a>
+
+	</li>
+	{% endfor %}
+	</ul>
+{% endblock content %}

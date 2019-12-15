@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block content %}
+	<h1>Your Recommendations</h1>
+	<ol>
+	{% for track in corres %}
+		<li>
+			<p>{{ track.name }} {{track.artists}}</p>
+		</li>
+	{% endfor %}
+	</ol>
+
+{% endblock content %}
