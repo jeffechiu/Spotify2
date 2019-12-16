@@ -2,21 +2,48 @@
 {% block content %}
 		{% set f = features|first %}
 
-		<h2>{{ td.name }}</h2>
-		<h3>Artists: {{ artists }}</h3>
+		<h2>{{ td.name }} - {{artists}}</h2>
 		<p>Acousticness Value: {{ f.acousticness }} </p>
+		<div class="progress">
+      		<div class="determinate" style="width: {{acous1 }}"></div>
+ 		 </div>
 		<p>Danceability Value: {{ f.danceability }} </p>
+		<div class="progress">
+      		<div class="determinate" style="width: {{ dance1 }}"></div>
+ 		</div>
 		<p>Duration in Milliseconds: {{ f.duration_ms }} </p>
 		<p>Energy Value: {{ f.energy }} </p>
+		<div class="progress">
+      		<div class="determinate" style="width: {{ energ1 }}"></div>
+ 		</div>
 		<p>Instrumentalness Value: {{ f.instrumentalness }} </p>
+		<div class="progress">
+      		<div class="determinate" style="width: {{ instr1 }}"></div>
+ 		</div>
 		<p>Key Value: {{ f.key }}</p>
 		<p>Liveness Value: {{ f.liveness }}</p>
+		<div class="progress">
+      		<div class="determinate" style="width: {{ liven1 }}"></div>
+ 		</div>
 		<p>Loudness Value: {{ f.loudness }}</p>
+		<div class="progress">
+      		<div class="determinate" style="width: {{ loudn1 }}"></div>
+ 		</div>
 		<p>Mode Value: {{ f.mode }}</p>
 		<p>Speechiness Value: {{ f.speechiness }}</p>
+		<div class="progress">
+      		<div class="determinate" style="width: {{ speec1 }}"></div>
+ 		</div>
 		<p>Tempo Value: {{ f.tempo }}</p>
 		<p>Time Signature: {{ f.time_signature }}</p>
 		<p>Valence Value: {{ f.valence }}</p>
+		<div class="progress">
+      		<div class="determinate" style="width: {{ valen1 }}"></div>
+ 		</div>
 		<p>Popularity Scale: {{td.popularity}}</p>
+		<div class="progress">
+      		<div class="determinate" style="width: {{ popul1 }}"></div>
+ 		</div>
+
 
 {% endblock content %}

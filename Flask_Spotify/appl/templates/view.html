@@ -1,7 +1,10 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="row">
-	<br />
+	<h1>{{playlist.name}}</h1>
+</div>
+
+<div class="row">
 	<div class="col s8 m8">
 	<ul class="collection">
 
@@ -15,14 +18,55 @@
     {% endfor %}
 
   	</ul>
+  	<a href={{ url_for('rec', playlist_id=pid )}} class="waves-effect waves-light btn">Get Recommendations</a>
   	</div>
   	<div class="col s4 m4">
   		<h5><b>Playlist Overall Attributes</b></h5>
+  		<p>Average Acousticness: {{acous}}</p>
+  		<div class="progress">
+      		<div class="determinate" style="width: {{acous1 }}"></div>
+ 		 </div>
+  		<p>Average Danceability: {{dance}}</p>
+  		<div class="progress">
+      		<div class="determinate" style="width: {{ dance1 }}"></div>
+ 		</div>
+ 		<p>Average Duartion in Milliseconds: {{durat}}</p>
+ 		<p>Average Energy: {{energ}} </p>
+ 		<div class="progress">
+      		<div class="determinate" style="width: {{ energ1 }}"></div>
+ 		</div>
+ 		<p>Average Instrumentalness: {{instr}} </p>
+ 		<div class="progress">
+      		<div class="determinate" style="width: {{ instr1 }}"></div>
+ 		</div>
+ 		<p>Average Key: {{key}}</p>
+ 		<p>Average Liveness: {{liven}}</p>
+ 		<div class="progress">
+      		<div class="determinate" style="width: {{ liven1 }}"></div>
+ 		</div>
+ 		<p>Average Loudness: {{loudn}}</p>
+ 		<div class="progress">
+      		<div class="determinate" style="width: {{ loudn1 }}"></div>
+ 		</div>
+ 		<p>Average Mode: {{mode}}</p>
+ 		<p>Average Speechiness: {{speec}}</p>
+ 		<div class="progress">
+      		<div class="determinate" style="width: {{ speec1 }}"></div>
+ 		</div>
+ 		<p>Average Tempo: {{tempo}}</p>
+ 		<p>Average Time Signature: {{times}}</p>
+ 		<p>Average Valence: {{valen}}</p>
+ 		<div class="progress">
+      		<div class="determinate" style="width: {{ valen1 }}"></div>
+ 		</div>
+ 		<p>Average Popularity Scale: {{popul}}</p>
+ 		<div class="progress">
+      		<div class="determinate" style="width: {{ popul1 }}"></div>
+ 		</div>
 
   	</div>
 
   </div>
-	<a href={{ url_for('rec', playlist_id=pid )}}>Get Recommendations</a>
 
 {% endblock content %}
 

@@ -157,7 +157,7 @@ def correspond(sp, s):
 		i = item[0]
 		t = sp.track(i)
 		print("t is ", t)
-		ans += [{"name": t['name'], "artists": get_artists(sp, t), "id": t["id"]}]
+		ans += [{"name": t['name'], "artists": get_artists(sp, t), "id": t["id"], "href": 'https://open.spotify.com/track/'+t["id"]}]
 	return ans
 
 def track_details(sp, id):
