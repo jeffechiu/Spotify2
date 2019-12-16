@@ -1,13 +1,23 @@
 {% extends "layout.html" %}
 {% block content %}
 	<h1>Your Recommendations</h1>
-	<ol>
+
+	<ul class="collection">
+
+	{% set count = 0 %}
 	{% for track in corres %}
-		<li>
-			<a href={{ url_for('vtrack', track_id=track.id) }}>{{ track.name }}</a>
-			<p>{{track.artists}}</p>
-		</li>
-	{% endfor %}
-	</ol>
+	{% set count = count + 1 %}
+	{% if count <= 10 %}
+    <li class="collection-item avatar">
+      <i class="material-icons circle">music_note</i>
+      <span class="title"><a href={{track.href}}><b>{{ track.name }}</b></a></span>
+      <p>{{track.artists}}</p>
+      <a href={{ url_for('vtrack', track_id=track.id) }} class="secondary-content">View Song Features</a>
+    </li>
+    {% endif %}
+    {% endfor %}
+
+  	</ul>
+  	<a href={{ url_for('view', playlist_id=pid )}} class="waves-effect waves-light btn">View Playlist</a>
 
 {% endblock content %}
