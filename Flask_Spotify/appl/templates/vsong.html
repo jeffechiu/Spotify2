@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block content %}
+		{% set f = features|first %}
+
+		<h2>{{ td.name }}</h2>
+		<h3>Artists: {{ artists }}</h3>
+		<p>Acousticness Value: {{ f.acousticness }} </p>
+		<p>Danceability Value: {{ f.danceability }} </p>
+		<p>Duration in Milliseconds: {{ f.duration_ms }} </p>
+		<p>Energy Value: {{ f.energy }} </p>
+		<p>Instrumentalness Value: {{ f.instrumentalness }} </p>
+		<p>Key Value: {{ f.key }}</p>
+		<p>Liveness Value: {{ f.liveness }}</p>
+		<p>Loudness Value: {{ f.loudness }}</p>
+		<p>Mode Value: {{ f.mode }}</p>
+		<p>Speechiness Value: {{ f.speechiness }}</p>
+		<p>Tempo Value: {{ f.tempo }}</p>
+		<p>Time Signature: {{ f.time_signature }}</p>
+		<p>Valence Value: {{ f.valence }}</p>
+		<p>Popularity Scale: {{td.popularity}}</p>
+
+{% endblock content %}

@@ -1,13 +1,28 @@
 {% extends "layout.html" %}
 {% block content %}
+<div class="row">
+	<br />
+	<div class="col s8 m8">
+	<ul class="collection">
 
 	{% for track in tracks %}
-	<ul>
-		<li>
-			<p>{{ track.name }} {{track.artists}}</p>
-		</li>
-	</ul>
-	{% endfor %}
-	<a href={{ url_for('rec', playlist_id=pid )}}>Select</a>
+    <li class="collection-item avatar">
+      <i class="material-icons circle">music_note</i>
+      <span class="title"><a href={{track.href}}><b>{{ track.name }}</b></a></span>
+      <p>{{track.artists}}</p>
+      <a href={{ url_for('vtrack', track_id=track.id) }} class="secondary-content">View Song Features</a>
+    </li>
+    {% endfor %}
+
+  	</ul>
+  	</div>
+  	<div class="col s4 m4">
+  		<h5><b>Playlist Overall Attributes</b></h5>
+
+  	</div>
+
+  </div>
+	<a href={{ url_for('rec', playlist_id=pid )}}>Get Recommendations</a>
 
 {% endblock content %}
+

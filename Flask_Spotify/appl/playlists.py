@@ -16,7 +16,7 @@ def get_playlists(sp):
 	playlists = sp.user_playlists(username)
 	p = []
 	for playlist in playlists['items']:
-		p += [{'name': playlist['name'], 'href': 'https://open.spotify.com/playlist/'+playlist['id'], 'id': playlist['id'], 'tracks': sp.user_playlist_tracks(username, playlist['id'])['items']}]
+		p += [{'name': playlist['name'], 'images': playlist['images'][0]['url'], 'href': 'https://open.spotify.com/playlist/'+playlist['id'], 'id': playlist['id'], 'tracks': sp.user_playlist_tracks(username, playlist['id'])['items']}]
 	return p
 
 def get_trks(sp, pid):
@@ -24,7 +24,7 @@ def get_trks(sp, pid):
 	trks = sp.user_playlist_tracks(username, pid)
 	for song in trks['items']:
 		#print(song)
-		tracks += [{'name': song['track']['name'], 'artists': get_artists(sp, song['track'])}]
+		tracks += [{'name': song['track']['name'], 'artists': get_artists(sp, song['track']), 'href': 'https://open.spotify.com/track/'+song['track']['id'], 'id': song['track']['id']}]
 	return tracks
 
 def get_playlist(sp):
@@ -129,6 +129,7 @@ def get_artists(sp, track):
 	if len(track['artists']) == 1:
 		return track['artists'][0]['name']
 	else:
+		print("else runs")
 		a = []
 		ans=""
 		for artist in track['artists']:
@@ -156,8 +157,11 @@ def correspond(sp, s):
 		i = item[0]
 		t = sp.track(i)
 		print("t is ", t)
-		ans += [{"name": t['name'], "artists": get_artists(sp, t)}]
+		ans += [{"name": t['name'], "artists": get_artists(sp, t), "id": t["id"]}]
 	return ans
+
+def track_details(sp, id):
+	return sp.track(id)
 
 
 
